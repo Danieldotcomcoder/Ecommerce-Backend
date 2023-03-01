@@ -82,4 +82,3 @@ production:
   <<: *default
   database: Ecommerce_Backend_production
   username: Ecommerce_Backend
-  password: <%= ENV["ECOMMERCE_BACKEND_DATABASE_PASSWORD"] %>
