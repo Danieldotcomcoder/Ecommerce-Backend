@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :verify_authenticity_token 
   before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
 
   # GET /users or /users.json
   def index
