@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_06_172503) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_07_075149) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -24,6 +32,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_172503) do
     t.integer "count", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,4 +44,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_172503) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "items", "categories"
 end
